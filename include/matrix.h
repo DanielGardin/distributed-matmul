@@ -11,14 +11,14 @@ Matrix create_matrix(int rows, int cols);
 
 void free_matrix(Matrix* matrix);
 
-// static inline float get_element(Matrix *matrix, int row, int col);
-
-// static inline void set_element(Matrix *matrix, int row, int col, float value);
-
 Matrix transpose(const Matrix *matrix);
 
 void print_matrix(const Matrix *matrix);
 
-int is_equal_matrix(const Matrix *A, const Matrix *B, float eps);
+int is_equal_matrix(const Matrix *A, const Matrix *B, float rel_tol, float abs_tol);
+
+void random_uniform_matrix(Matrix *mat, float min, float max);
+
+void fill_matrix(Matrix *mat, float value);
 
 #endif // MATRIX_H

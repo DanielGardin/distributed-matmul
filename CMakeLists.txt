@@ -14,11 +14,13 @@ if(USE_MPI)
     find_package(MPI REQUIRED)
     add_compile_definitions(OPENMPI)
     add_executable(matmul ${SRC})
-    target_link_libraries(matmul PRIVATE MPI::MPI_C openblas)
+    # link MPI, OpenBLAS and the math library (libm)
+    target_link_libraries(matmul PRIVATE MPI::MPI_C openblas m)
 
 else()
     add_executable(matmul ${SRC})
-    target_link_libraries(matmul PRIVATE openblas)
+    # link OpenBLAS and the math library (libm)
+    target_link_libraries(matmul PRIVATE openblas m)
 
 endif()
 

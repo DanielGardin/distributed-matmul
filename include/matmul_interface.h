@@ -3,7 +3,13 @@
 
 #include "matrix.h"
 
-int serial_matmul(
+int naive_matmul(
+    const Matrix* restrict A,
+    const Matrix* restrict B,
+    Matrix* C
+);
+
+int blocked_matmul(
     const Matrix* restrict A,
     const Matrix* restrict B,
     Matrix* C,
@@ -15,5 +21,25 @@ int openblas_matmul(
     const Matrix* restrict B,
     Matrix* C
 );
+
+#ifdef OPENMPI
+int parallel_matmul(
+    const Matrix* restrict A,
+    const Matrix* restrict B,
+    Matrix* C,
+    int n_proc_rows,
+    int n_proc_cols,
+    int block_size
+);
+
+int parallel_openblas_matmul(
+    const Matrix* restrict A,
+    const Matrix* restrict B,
+    Matrix* C,
+    int n_proc_rows,
+    int n_proc_cols,
+    int block_size
+);
+#endif
 
 #endif // MATMUL_INTERFACE_H
