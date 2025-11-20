@@ -7,6 +7,7 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 include_directories("include")
 file(GLOB SRC "src/*.c")
+list(REMOVE_ITEM SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/experiment.c")
 
 option(USE_MPI "Build with MPI support" OFF)
 
@@ -29,5 +30,5 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-set(CMAKE_C_FLAGS_RELEASE "-O3 -march=native -Wall -Wextra")
-set(CMAKE_C_FLAGS_DEBUG   "-g -Wall -Wextra")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -march=native -Wall -Wextra -Werror")
+set(CMAKE_C_FLAGS_DEBUG   "-g -Wall -Wextra -Werror")
