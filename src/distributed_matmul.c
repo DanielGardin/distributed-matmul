@@ -11,6 +11,12 @@
 #define ceildiv(a, b) (((a) + (b) - 1) / (b))
 #define min(a, b) ((a < b ? a : b))
 
+
+// Global variables to store communication and computation times
+double g_comm = 0.0;
+double g_comp = 0.0;
+
+
 int get_block_size(int dim, int n_procs, int proc_idx) {
     int base_size = dim / n_procs;
     int remainder = dim % n_procs;
@@ -158,7 +164,10 @@ int parallel_matmul(
     Matrix block_B = create_matrix(local_PB, local_M);
     Matrix block_C = create_matrix(local_N, local_M);
 
+    double T0 = MPI_Wtime();
     send_submatrices(A, B, n_proc_rows, n_proc_cols, rank, &block_A, &block_B);
+    g_comm += MPI_Wtime() - T0;
+
 
     MPI_Comm row_comm, col_comm;
     MPI_Comm_split(MPI_COMM_WORLD, proc_row, proc_col, &row_comm);
@@ -189,14 +198,18 @@ int parallel_matmul(
         if (proc_row == ownerB)
         subarraycopy(block_B.data, k - startB, 0, panel_size, block_B.cols, block_B.cols, block_B.cols, panelB);
 
+        T0 = MPI_Wtime();
         MPI_Bcast(panelA, local_N * panel_size, MPI_FLOAT, ownerA, row_comm);
         MPI_Bcast(panelB, panel_size * local_M, MPI_FLOAT, ownerB, col_comm);
+        g_comm += MPI_Wtime() - T0;
 
+        T0 = MPI_Wtime();
         naive_matmul(
             &(Matrix){local_N, panel_size, panelA},
             &(Matrix){panel_size, local_M, panelB},
             &block_C
         );
+        g_comp += MPI_Wtime() - T0;
 
         k += panel_size;
 
@@ -220,7 +233,9 @@ int parallel_matmul(
     MPI_Comm_free(&row_comm);
     MPI_Comm_free(&col_comm);
 
+    T0 = MPI_Wtime();
     recv_submatrices(&block_C, n_proc_rows, n_proc_cols, rank, C);
+    g_comm += MPI_Wtime() - T0;
 
     free_matrix(&block_C);
 
@@ -256,7 +271,10 @@ int parallel_openblas_matmul(
     Matrix block_B = create_matrix(local_PB, local_M);
     Matrix block_C = create_matrix(local_N, local_M);
 
+    double T0 = MPI_Wtime();
     send_submatrices(A, B, n_proc_rows, n_proc_cols, rank, &block_A, &block_B);
+    g_comm += MPI_Wtime() - T0;
+
 
     MPI_Comm row_comm, col_comm;
     MPI_Comm_split(MPI_COMM_WORLD, proc_row, proc_col, &row_comm);
@@ -278,18 +296,21 @@ int parallel_openblas_matmul(
     while (k < P) {
         int nbA = endA - k;
         int nbB = endB - k;
-
+        
         int panel_size = min(min(block_size, nbA), nbB);
 
         if (proc_col == ownerA)
         subarraycopy(block_A.data, 0, k - startA, block_A.rows, panel_size, block_A.cols, panel_size, panelA);
-
+        
         if (proc_row == ownerB)
         subarraycopy(block_B.data, k - startB, 0, panel_size, block_B.cols, block_B.cols, block_B.cols, panelB);
-
+        
+        T0 = MPI_Wtime();
         MPI_Bcast(panelA, local_N * panel_size, MPI_FLOAT, ownerA, row_comm);
         MPI_Bcast(panelB, panel_size * local_M, MPI_FLOAT, ownerB, col_comm);
+        g_comm += MPI_Wtime() - T0;
 
+        T0 = MPI_Wtime();
         cblas_sgemm(
             CblasRowMajor,
             CblasNoTrans, CblasNoTrans,
@@ -300,6 +321,7 @@ int parallel_openblas_matmul(
             1.0f,
             block_C.data, local_M
         );
+        g_comp += MPI_Wtime() - T0;
 
         k += panel_size;
 
@@ -323,7 +345,9 @@ int parallel_openblas_matmul(
     MPI_Comm_free(&row_comm);
     MPI_Comm_free(&col_comm);
 
+    T0 = MPI_Wtime();
     recv_submatrices(&block_C, n_proc_rows, n_proc_cols, rank, C);
+    g_comm += MPI_Wtime() - T0;
 
     free_matrix(&block_C);
 

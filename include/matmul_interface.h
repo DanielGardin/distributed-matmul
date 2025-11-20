@@ -22,6 +22,9 @@ int openblas_matmul(
     Matrix* C
 );
 
+extern double g_comm;
+extern double g_comp;
+
 #ifdef OPENMPI
 int parallel_matmul(
     const Matrix* restrict A,
@@ -40,6 +43,7 @@ int parallel_openblas_matmul(
     int n_proc_cols,
     int block_size
 );
+
 #endif
 
 #endif // MATMUL_INTERFACE_H
