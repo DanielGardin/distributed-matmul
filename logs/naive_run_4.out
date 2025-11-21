@@ -1,0 +1,16 @@
+================     Experiment Results     ================
+30 samples evaluated in a total of 71.601 ms
+Matrix size:                        64 x 64
+Block size:                         64
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  0 (Serial naive)
+
+Time  (mean ± σ):                   35.518 μs ±  3.592 μs
+Time  (min … max):                  32.971 μs … 43.241 μs
+
+      █__▃______________▃________________________▁_▁__
+33.0 μs             frequency by time             43.2 μs
+
+============================================================
