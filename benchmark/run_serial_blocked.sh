@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -N matmul_serial_naive
+#PBS -N matmul_serial_blocked
 #PBS -q serial
 #PBS -l nodes=1
 #PBS -l walltime=01:00:00

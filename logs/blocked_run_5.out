@@ -1,0 +1,128 @@
+================     Experiment Results     ================
+30 samples evaluated in a total of 54.550 ms
+Matrix size:                        32 x 32
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                    7.064 μs ± 86.522 ns
+Time  (min … max):                   6.923 μs …  7.274 μs
+
+      ▁___█▁▃_▃__________▁____▆▄▃▆▆__________________▁
+6.9 μs             frequency by time             7.3 μs
+
+============================================================
+================     Experiment Results     ================
+30 samples evaluated in a total of 60.435 ms
+Matrix size:                        64 x 64
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                   57.865 μs ±  5.052 μs
+Time  (min … max):                  52.709 μs … 70.873 μs
+
+      ▅_▄___▃▅__________█_▁_____________▁▂_▁_________▁
+52.7 μs             frequency by time             70.9 μs
+
+============================================================
+================     Experiment Results     ================
+30 samples evaluated in a total of 72.839 ms
+Matrix size:                        128 x 128
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                   396.551 μs ± 14.670 μs
+Time  (min … max):                  371.335 μs … 428.112 μs
+
+      ▄▄_█_▄_____▄_█_██▄▄▄▄▄▄▄█____▄_▄▄_█___█__▄_____▄
+371.3 μs             frequency by time             428.1 μs
+
+============================================================
+================     Experiment Results     ================
+30 samples evaluated in a total of 246.406 ms
+Matrix size:                        256 x 256
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                    3.780 ms ± 68.701 μs
+Time  (min … max):                   3.649 ms …  3.919 ms
+
+      ▄_▄_▄_▄__▄_▄▄___▄▄▄▄█_▄█__█_██_▄▄█____▄__▄__▄__▄
+3.6 ms             frequency by time             3.9 ms
+
+============================================================
+================     Experiment Results     ================
+30 samples evaluated in a total of 1.412 s 
+Matrix size:                        512 x 512
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                   31.858 ms ±  1.381 ms
+Time  (min … max):                  30.051 ms … 33.830 ms
+
+      █_▄█▄█▄_▄▄_▄▄_▄__▄__▄___▄________▄_█___▄▄█▄▄_█▄▄
+30.1 ms             frequency by time             33.8 ms
+
+============================================================
+================     Experiment Results     ================
+30 samples evaluated in a total of 10.782 s 
+Matrix size:                        1024 x 1024
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                   278.425 ms ± 13.211 ms
+Time  (min … max):                  260.636 ms … 300.662 ms
+
+      ▁_▁_▂_█_▁___▁_▁____▂___▁▁___▁▂▁▁_______▁▁__▁▁▁_▂
+260.6 ms             frequency by time             300.7 ms
+
+============================================================
+================     Experiment Results     ================
+30 samples evaluated in a total of 86.129 s 
+Matrix size:                        2048 x 2048
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                    2.338 s  ± 23.632 ms
+Time  (min … max):                   2.256 s  …  2.369 s 
+
+      ▂_____________▂__________▂▂▂▂▂▂_▂▅▅▂▂█_▅▅▂▂▂▂▂_█
+2.3 s              frequency by time             2.4 s 
+
+============================================================
+================     Experiment Results     ================
+30 samples evaluated in a total of 755.265 s 
+Matrix size:                        4096 x 4096
+Block size:                         32
+Warmup rounds:                      5
+Repetitions:                        30
+OpenBLAS:                           OFF
+Implementation ID:                  1 (Serial blocked)
+
+Time  (mean ± σ):                   21.091 s  ± 81.977 ms
+Time  (min … max):                  20.950 s  … 21.216 s 
+
+      ▂▂_▂__▂▄_▂_▂_____█_____▂▂▄____▄▂___▂▂▄▂__▂_▄▂_▂▂
+21.0 s              frequency by time             21.2 s 
+
+============================================================
