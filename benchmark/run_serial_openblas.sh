@@ -26,11 +26,11 @@ SIZES=(4 8 16 32 64 128 256 512 1024 2048 4096 8192)
 
 SIZE=${SIZES[$PBS_ARRAY_INDEX]}
 
-OUTPUT_FILE="results/raw/openblas/n${SIZE}.csv"
+OUTPUT_FILE="results/raw/summa/np${NPROCS}_n${SIZE}_b1.csv"
 
 mpirun -np 1 ./build/matmul "$OUTPUT_FILE" \
     -n "$SIZE" \
-    -i 0 \
+    -i 2 \
     -r 30 \
     -w 5 \
     -s 0
