@@ -272,7 +272,7 @@ void print_results(const ExperimentConfig *cfg, const ExperimentResult *res) {
 void export_csv(char *path, const ExperimentConfig *cfg, const ExperimentResult *res) {
     FILE *fp = fopen(path, "w");
 
-    fprintf(fp, "rep_id, size, block_size, BLAS, MPI, grid, time");
+    fprintf(fp, "rep_id,size,block_size,BLAS,MPI,grid,time");
     if (cfg->use_mpi) {
         fprintf(fp, ", comm_time, comp_time");
     }

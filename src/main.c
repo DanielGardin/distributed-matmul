@@ -160,7 +160,6 @@ int parse_args(int argc, char **argv, ExperimentConfig *cfg, int rank) {
 }
 
 int main(int argc, char** argv) {
-    double T0 = CLOCK_FN();
     int rank = 0;
 
 #ifdef OPENMPI
@@ -176,8 +175,8 @@ int main(int argc, char** argv) {
 
     if (!parse_args(argc, argv, &cfg, rank)) return 1;
 
+    double T0 = CLOCK_FN();
     ExperimentResult results = run_experiment(&cfg, rank);
-
     results.overall_time = (double)CLOCK_FN() - T0;
 
 #ifndef OPENMPI
@@ -303,8 +302,6 @@ ExperimentResult run_experiment(const ExperimentConfig *cfg, int rank) {
 
         log_timings(&results, r, time, comm_time, comp_time, rank);
     }
-
-
 
     free_matrix(&A);
     free_matrix(&B);
