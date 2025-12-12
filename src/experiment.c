@@ -274,7 +274,7 @@ void export_csv(char *path, const ExperimentConfig *cfg, const ExperimentResult 
 
     fprintf(fp, "rep_id,size,block_size,BLAS,MPI,grid,time");
     if (cfg->use_mpi) {
-        fprintf(fp, ", comm_time, comp_time");
+        fprintf(fp, ",comm_time,comp_time");
     }
     fputc('\n', fp);
 

@@ -1,4 +1,4 @@
-rep_id,size,block_size,BLAS,MPI,grid,time, comm_time, comp_time
+rep_id,size,block_size,BLAS,MPI,grid,time,comm_time,comp_time
 0, 4096, 1024, 0, 1, 4x4, 1.08163845, 0.277442503, 1.02115244
 1, 4096, 1024, 0, 1, 4x4, 1.0735454, 0.277721225, 1.00361323
 2, 4096, 1024, 0, 1, 4x4, 1.01983305, 0.246971789, 0.941519905
